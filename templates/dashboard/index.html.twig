@@ -1,0 +1,13 @@
+{% extends "auth-base.html.twig" %}
+
+{% block body%}
+
+<h4>Upload A file of poker hands</h4>
+
+{{ form_start(form) }}
+    {{ form_row(form.fileUpload) }}
+    <button type="submit" class="btn btn-primary">Upload</button>
+{{ form_end(form) }}
+
+
+{% endblock %}

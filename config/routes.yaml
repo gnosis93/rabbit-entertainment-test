@@ -1,0 +1,12 @@
+
+login:
+    path:       /login
+    controller: App\Controller\SecurityController::login
+
+index:
+   path: /
+   controller: App\Controller\DashBoardController::indexAction
+    
+app_logout:
+    path: /logout
+    methods: GET
