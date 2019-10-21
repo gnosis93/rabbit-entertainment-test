@@ -22,7 +22,9 @@ class DashBoardController extends Controller
             $fileRepository = $em->getRepository(File::class);
 
             $uploadedTextFile = $form['fileUpload']->getData();
-            $fileUploader->upload($uploadedTextFile,$fileRepository);
+            $uploadedFile = $fileUploader->upload($uploadedTextFile,$fileRepository);
+            return $this->redirectToRoute("fileHands",['fileId'=>$uploadedFile->id]);
+
         }
         
         return $this->render('dashboard/index.html.twig',[

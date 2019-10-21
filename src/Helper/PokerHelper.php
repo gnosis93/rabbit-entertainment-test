@@ -16,9 +16,6 @@ class PokerHelper{
         'S' => 4,
     ];
 
-
-
-
     public static function getWinner(DBHand $handInDb){
         $playerOneHand = self::getHandOfCards($handInDb->getPlayerOneHandArray());
         

@@ -19,7 +19,7 @@ class FileRepository extends EntityRepository
         ]);
     }
 
-    public function saveUploadedFile($fileName, array $processedFile)
+    public function saveUploadedFile($fileName, array $processedFile):File
     {
         $entityManager =  $this->getEntityManager();
 
@@ -38,6 +38,8 @@ class FileRepository extends EntityRepository
         }
 
         $entityManager->flush();
+
+        return $fileInDb;
     }
 
     private function newHand(array $handInFile,File $fileInDb){
