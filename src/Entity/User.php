@@ -16,28 +16,38 @@ class User implements UserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
      */
-    private $username;
+    public $username;
 
     /**
      * @ORM\Column(type="string", length=64)
      */
-    private $password;
+    public $password;
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
      */
-    private $email;
+    public $email;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
 
+    public $plainPassword;
+
+    public function getPlainPassword(){
+        return $this->plainPassword;
+    }
+
+    public function setPassword($pass){
+        $this->password = $pass;
+    }
+    
     public function __construct()
     {
         $this->isActive = true;
@@ -49,6 +59,12 @@ class User implements UserInterface, \Serializable
     {
         return $this->username;
     }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
 
     public function getSalt()
     {
@@ -78,6 +94,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
+            $this->email
             // see section on salt below
             // $this->salt,
         ));
