@@ -2,6 +2,8 @@
 // src/Service/FileUploader.php
 namespace App\Service;
 
+use App\Repository\FileRepository;
+use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -14,9 +16,12 @@ class FileUploader
         $this->targetDirectory = $targetDirectory;
     }
 
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file,FileRepository $fileRepository)
     {
         $hands = $this->readHandsFile($file);
+        $fileName = $file->getFilename();
+        
+        $fileRepository->saveUploadedFile($fileName,$hands);
         var_dump($hands);
         die();
     }
@@ -36,7 +41,6 @@ class FileUploader
         
         return $result;
     }
-
 
     public function getTargetDirectory()
     {

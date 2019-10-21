@@ -6,7 +6,15 @@ login:
 index:
    path: /
    controller: App\Controller\DashBoardController::indexAction
+
+fileListing:
+   path: /files/listing
+   controller: App\Controller\FileController::listingAction
     
 app_logout:
     path: /logout
     methods: GET
+
+fileHands:
+   path: /files/hands/{fileId}
+   controller: App\Controller\FileController::fileCardsAction

@@ -1,0 +1,28 @@
+{% extends "auth-base.html.twig" %}
+
+{% block body%}
+
+<h4>File Listing</h4>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Filename</th>
+        <th>Posted At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for file in files %}
+            <tr>
+                <td>{{file.id}}</td>
+                <td>{{file.name}}</td>
+                <td>{{file.postedAtStr()}}</td>
+                <td>
+                    <a href="/files/hands/{{file.id}}" class="btn btn-primary">View Hands</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

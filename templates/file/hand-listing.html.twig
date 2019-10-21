@@ -1,0 +1,72 @@
+{% extends "auth-base.html.twig" %}
+
+{% block body%}
+
+<style>
+  .playerOne{
+    color:red;
+  }
+  .playerTwo{
+    color:blue;
+  }
+</style>
+
+<h4>File Hands</h4>
+
+<p>Totals are at the bottom of this page</p>
+ <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th colspan="5" style="text-align:center;color:green">
+          Player One Hand
+        <th > - </th>
+        <th colspan="5" style="text-align:center;color:red">
+          Player Two Hand
+        </th>
+        <th>Winner</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% set playerOneWins, playerTwoWins , winner =  0,0,'' %}
+        {% for hand in hands %}
+            {% set winner = hand.winner()%}
+            <tr>
+                <td>{{hand.id}}</td>
+
+
+                <td class="playerOne"> <img width="80" height="100" src="/assets/images/{{hand.card_1}}.png"/></td>
+                <td class="playerOne"><img width="80" height="100" src="/assets/images/{{hand.card_2}}.png"/></td>
+                <td class="playerOne"><img width="80" height="100" src="/assets/images/{{hand.card_3}}.png"/></td>
+                <td class="playerOne"><img width="80" height="100" src="/assets/images/{{hand.card_4}}.png"/></td>
+                <td class="playerOne"><img width="80" height="100" src="/assets/images/{{hand.card_5}}.png"/></td>
+                
+                <td> <strong>VS</strong> </td>
+                
+                <td class="playerTwo"><img width="80" height="100" src="/assets/images/{{hand.card_6}}.png"/></td>
+                <td class="playerTwo"><img width="80" height="100" src="/assets/images/{{hand.card_7}}.png"/></td>
+                <td class="playerTwo"><img width="80" height="100" src="/assets/images/{{hand.card_8}}.png"/></td>
+                <td class="playerTwo"><img width="80" height="100" src="/assets/images/{{hand.card_9}}.png"/></td>
+                <td class="playerTwo"><img width="80" height="100" src="/assets/images/{{hand.card_10}}.png"/></td>
+                
+                {% if winner == 'Player One' %}
+                    <td style="color:green"><strong>{{winner}}</strong></td>
+                    {% set playerOneWins = playerOneWins + 1%}
+                {% else %}
+                    <td style="color:red"><strong>{{winner}}</strong></td>
+                    {% set playerTwoWins = playerTwoWins + 1 %}                
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col-12">
+      <strong>Player One Total Wins : </strong> {{playerOneWins}}
+    </div>
+     <div class="col-12">
+      <strong>Player Two Total Wins : </strong> {{playerTwoWins}}
+    </div>
+  </div>
+{% endblock %}
